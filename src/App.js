@@ -16,7 +16,7 @@ class App extends Component {
         name: "Octavio Villalpando",
         username: "Mostro",
         image: "https://i.pinimg.com/564x/68/ee/c7/68eec72db45045c5e5d3eee08e992531.jpg",
-        friendList: ["Leo", "Raul", "Karen"]
+        friendList: []
       },
       potentialFriends: [],
       apiDataLoaded: false
@@ -43,20 +43,42 @@ class App extends Component {
     })    
   }
 
+  addFriend = (newFriend) => {
+    const currentFriends = this.state.user;
+    currentFriends.friendList.push(newFriend);
+
+    const potentialFriends = this.state.potentialFriends;
+    const newPotentialFriends = potentialFriends.filter(friend => {
+      return newFriend.login.uuid !== friend.login.uuid
+    })
+    console.log(newPotentialFriends);
+
+    this.setState({
+      user: currentFriends,
+      potentialFriends: newPotentialFriends
+    })
+  }
+
   render() {
     return (
       <div className="App">
-       <nav>
-         <Link to="/">Profile</Link>
-         <Link to="/users">Users</Link>
-       </nav>
-       <h1>MostroBook</h1>
+      <header>
+        <h1>MostroBook</h1>
+        <nav>
+          <Link to="/">Profile</Link>
+          <Link to="/users">Users</Link>
+        </nav>
+       </header>
        <Route exact path="/" render={() => (
          <Profile user={this.state.user} />
        )} />
        <Route path="/users" render={() => (
-         <FriendsPage potentialFriends={this.state.potentialFriends}/>
+         <FriendsPage 
+         potentialFriends={this.state.potentialFriends}
+         addFriend={this.addFriend}
+         />
        )} /> 
+       <footer>This is a footer</footer>
       </div>
     );
   } 
