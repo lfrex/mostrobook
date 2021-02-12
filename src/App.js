@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+
 import Profile from './components/Profile';
 
 class App extends Component {
@@ -11,7 +12,7 @@ class App extends Component {
         name: "Octavio Villalpando",
         username: "Mostro",
         image: "https://i.pinimg.com/564x/68/ee/c7/68eec72db45045c5e5d3eee08e992531.jpg",
-        friendlist: []
+        friendList: ["Leo", "Raul", "Karen"]
       },
       apiDataLoaded: false,
       potentialFriends: []
@@ -23,7 +24,8 @@ class App extends Component {
     return (
       <div className="App">
         <h1>MostroBook</h1>
-        <Profile />
+       <Profile user={this.state.user}/>
+
       </div>
     );
   } 
