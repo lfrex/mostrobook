@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import './App.css';
 
 import axios from 'axios';
+import { Route, Link } from 'react-router-dom';
 import Profile from './components/Profile';
 import FriendsPage from './components/FriendsPage';
+
 
 class App extends Component {
   constructor(props) {
@@ -44,9 +46,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>MostroBook</h1>
-       <Profile user={this.state.user}/>
-       <FriendsPage potentialFriends={this.state.potentialFriends}/>
+       <nav>
+         <Link to="/">Profile</Link>
+         <Link to="/users">Users</Link>
+       </nav>
+       <h1>MostroBook</h1>
+       <Route exact path="/" render={() => (
+         <Profile user={this.state.user} />
+       )} />
+       <Route path="/users" render={() => (
+         <FriendsPage potentialFriends={this.state.potentialFriends}/>
+       )} /> 
       </div>
     );
   } 
