@@ -1,25 +1,30 @@
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      user: {
+        name: "Octavio Villalpando",
+        username: "Mostro",
+        image: "https://i.pinimg.com/564x/68/ee/c7/68eec72db45045c5e5d3eee08e992531.jpg",
+        friendlist: []
+      },
+      apiDataLoaded: false,
+      potentialFriends: []
+    }
+  }
+
+
+  render() {
+    return (
+      <div className="App">
+        <h1>MostroBook</h1>
+      </div>
+    );
+  } 
 }
 
 export default App;
